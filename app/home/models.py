@@ -20,6 +20,10 @@ class Bus(models.Model):
     def __str__(self):
         return self.name
 
+class BusTrip(models.Model):
+    bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
+    departure_time = models.DateTimeField()
+
 class Seat(models.Model):
     bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
     column = models.IntegerField()
@@ -32,4 +36,4 @@ class Seat(models.Model):
 class SeatUserLink(models.Model):
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True, null=True)
-    date_of_departure = models.DateTimeField()
+    departure_time = models.ForeignKey(BusTrip, on_delete=models.CASCADE)
