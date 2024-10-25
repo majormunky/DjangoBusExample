@@ -7,6 +7,10 @@
     <div class="col-12">
         {% if agency_list %}
         <table class="table">
+            <tr>
+                <th>&nbsp;</th>
+                <th>Agency Name</th>
+            </tr>
             {% for agency in agency_list %}
                 <tr>
                     <td><a href="#">View</a></td>
@@ -17,7 +21,7 @@
         {% else %}
         <p>No Agencies Found</p>
         {% endif %}
-        <p></p><a href="#" class="btn btn-primary btn-sm">Add Agency</a></p>
+        <p></p><a href="{% url 'add-agency' %}" class="btn btn-primary btn-sm">Add Agency</a></p>
     </div>
 </div>
 {% endblock %}
