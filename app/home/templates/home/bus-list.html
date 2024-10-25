@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page_name %}Bus List{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        {% if bus_list %}
+        <table class="table">
+            <tr>
+                <th>&nbsp;</th>
+                <th>Agency Name</th>
+                <th>Bus Name</th>
+                <th>Seat Config</th>
+            </tr>
+            {% for bus in bus_list %}
+                <tr>
+                    <td><a href="#">View</a></td>
+                    <td>{{bus.agency.name}}</td>
+                    <td>{{bus.name}}</td>
+                    <td>-</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No Busses Found</p>
+        {% endif %}
+        <p></p><a href="#" class="btn btn-primary btn-sm">Add Bus</a></p>
+    </div>
+</div>
+{% endblock %}

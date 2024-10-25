@@ -19,3 +19,6 @@ def add_agency(request):
     else:
         form = forms.AgencyForm()
     return render(request, "home/add-agency.html", {"form": form})
+
+def bus_list(request):
+    return render(request, "home/bus-list.html", {})
