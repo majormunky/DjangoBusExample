@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_name %}Agency List{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        {% if agency_list %}
+        <table class="table">
+            {% for agency in agency_list %}
+                <tr>
+                    <td><a href="#">View</a></td>
+                    <td>{{agency.name}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No Agencies Found</p>
+        {% endif %}
+        <p></p><a href="#" class="btn btn-primary btn-sm">Add Agency</a></p>
+    </div>
+</div>
+{% endblock %}
