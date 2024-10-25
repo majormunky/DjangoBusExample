@@ -18,14 +18,14 @@
                     <td><a href="#">View</a></td>
                     <td>{{bus.agency.name}}</td>
                     <td>{{bus.name}}</td>
-                    <td>-</td>
+                    <td>{{bus.seat_configuration}} - {{bus.row_count}} Rows</td>
                 </tr>
             {% endfor %}
         </table>
         {% else %}
         <p>No Busses Found</p>
         {% endif %}
-        <p></p><a href="#" class="btn btn-primary btn-sm">Add Bus</a></p>
+        <p></p><a href="{% url 'add-bus' %}" class="btn btn-primary btn-sm">Add Bus</a></p>
     </div>
 </div>
 {% endblock %}

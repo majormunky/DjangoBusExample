@@ -21,4 +21,15 @@ def add_agency(request):
     return render(request, "home/add-agency.html", {"form": form})
 
 def bus_list(request):
-    return render(request, "home/bus-list.html", {})
+    bus_list = models.Bus.objects.all()
+    return render(request, "home/bus-list.html", {"bus_list": bus_list})
+
+def add_bus(request):
+    if request.method == "POST":
+        form = forms.BusForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("bus-list")
+    else:
+        form = forms.BusForm()
+    return render(request, "home/add-bus.html", {"form": form})

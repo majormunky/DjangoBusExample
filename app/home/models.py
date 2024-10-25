@@ -4,6 +4,9 @@ from django.contrib.auth import get_user_model
 class Agency(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name
+
 class Bus(models.Model):
     SEAT_CONFIG_CHOICES = (
         ("1x1", "1x1"),
@@ -13,6 +16,9 @@ class Bus(models.Model):
     name = models.CharField(max_length=255, unique=True)
     seat_configuration = models.CharField(max_length=10, choices=SEAT_CONFIG_CHOICES)
     row_count = models.IntegerField()
+
+    def __str__(self):
+        return self.name
 
 class Seat(models.Model):
     bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
