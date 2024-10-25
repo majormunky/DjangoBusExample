@@ -9,6 +9,7 @@ class Bus(models.Model):
         ("1x1", "1x1"),
         ("2x2", "2x2"),
     )
+    agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     seat_configuration = models.CharField(max_length=10, choices=SEAT_CONFIG_CHOICES)
     row_count = models.IntegerField()
