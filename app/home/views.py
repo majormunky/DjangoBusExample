@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . import models
 from . import forms
 
@@ -33,3 +33,7 @@ def add_bus(request):
     else:
         form = forms.BusForm()
     return render(request, "home/add-bus.html", {"form": form})
+
+def bus_detail(request, pk):
+    bus_data = get_object_or_404(models.Bus, pk=pk)
+    return render(request, "home/bus-detail.html", {"bus_data": bus_data})

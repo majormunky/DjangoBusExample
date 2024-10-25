@@ -15,7 +15,7 @@
             </tr>
             {% for bus in bus_list %}
                 <tr>
-                    <td><a href="#">View</a></td>
+                    <td><a href="{% url 'bus-detail' bus.id %}">View</a></td>
                     <td>{{bus.agency.name}}</td>
                     <td>{{bus.name}}</td>
                     <td>{{bus.seat_configuration}} - {{bus.row_count}} Rows</td>
