@@ -6,8 +6,24 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-12">
-
+    <div class="col-6">
+        <h3>Seat Configuration</h3>
+        <table class='normal-table'>
+        {% for row in seat_data %}
+        <tr>
+            {% for seat in row %}
+                {% if seat is None %}
+                    <td class='aisle'>&nbsp;</td>
+                {% else %}
+                    <td>{{seat}}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <div class="col-6">
+        <h3>Scheduled Trips</h3>
     </div>
 </div>
 {% endblock %}

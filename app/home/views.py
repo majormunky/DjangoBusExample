@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import models
 from . import forms
+from . import utils
 
 # Create your views here.
 def index(request):
@@ -28,7 +29,8 @@ def add_bus(request):
     if request.method == "POST":
         form = forms.BusForm(request.POST)
         if form.is_valid():
-            form.save()
+            item = form.save()
+            utils.add_seats_for_bus(item)
             return redirect("bus-list")
     else:
         form = forms.BusForm()
@@ -36,4 +38,6 @@ def add_bus(request):
 
 def bus_detail(request, pk):
     bus_data = get_object_or_404(models.Bus, pk=pk)
-    return render(request, "home/bus-detail.html", {"bus_data": bus_data})
+    seat_list = models.Seat.objects.filter(bus=bus_data).order_by("row", "column")
+    seat_data = utils.organize_seats_for_bus(bus_data, seat_list)
+    return render(request, "home/bus-detail.html", {"bus_data": bus_data, "seat_data": seat_data})

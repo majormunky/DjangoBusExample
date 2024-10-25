@@ -26,6 +26,9 @@ class Seat(models.Model):
     row = models.IntegerField()
     person = models.ManyToManyField(get_user_model(), through="SeatUserLink")
 
+    def __str__(self):
+        return f"{self.row}-{self.column}"
+
 class SeatUserLink(models.Model):
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True, null=True)
