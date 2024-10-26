@@ -46,3 +46,13 @@ def organize_seats_for_bus(bus, seats):
             row += 1
             seat_count = 0
     return result
+
+
+def create_bus_seats_for_trip(bus, trip):
+    seats = models.Seat.objects.filter(bus=bus)
+    for seat in seats:
+        seat_link = models.SeatUserLink(
+            seat=seat,
+            departure_time=trip
+        )
+        seat_link.save()

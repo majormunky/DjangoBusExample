@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block page_name %}Bus Trip: {{trip_data.departure_time}}{% endblock %}
+
+{% block page_buttons %}<a href="{% url 'bus-detail' trip_data.bus.id %}" class="btn btn-outline-secondary">Back to Bus Detail</a>{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <table class='normal-table'>
+            {% for row in seat_data %}
+            <tr>
+                {% for seat_link in row %}
+                    {% if seat_link is None %}
+                        <td class='aisle'>&nbsp;</td>
+                    {% else %}
+                        {% if seat_link.user %}
+                            <td class='seat-taken'>{{seat_link.seat}}</td>
+                        {% else %}
+                            <td class='seat-open'>{{seat_link.seat}}</td>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

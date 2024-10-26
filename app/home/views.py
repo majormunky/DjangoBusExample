@@ -51,7 +51,16 @@ def add_bus_trip(request, bus_pk):
             item = form.save(commit=False)
             item.bus = bus_data
             item.save()
+
+            utils.create_bus_seats_for_trip(bus_data, item)
+
             return redirect("bus-detail", pk=bus_pk)
     else:
         form = forms.BusTripForm()
     return render(request, "home/add-bus-trip.html", {"form": form})
+
+def bus_trip_detail(request, pk):
+    trip_data = get_object_or_404(models.BusTrip, pk=pk)
+    seat_links = models.SeatUserLink.objects.filter(departure_time=trip_data)
+    seat_data = utils.organize_seats_for_bus(trip_data.bus, seat_links)
+    return render(request, "home/bus-trip-detail.html", {"trip_data": trip_data, "seat_links": seat_links, "seat_data": seat_data})
