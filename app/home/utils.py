@@ -28,21 +28,36 @@ def add_seats_for_bus(bus_data):
 def organize_seats_for_bus(bus, seats):
     result = []
 
+    # Create a new empty list for each row in our bus
     for _ in range(bus.row_count):
         result.append([])
 
+    # figure out how many seats we have in a row
     seats_per_row = get_seats_per_row(bus)
+
     # we can cheat here a bit since we know we have equal
     # amount of seats on each side
     seats_per_side = seats_per_row // 2
+
+    # counters to keep track of where we are at in our loop
     seat_count = 0
     row = 0
+
+    # start building our data structure
     for seat in seats:
+        # add seat to the row
         result[row].append(seat)
+
+        # increment our seat counter
         seat_count += 1
+
+        # if our seat counter is equal to the seats per side
+        # add in an aisle
         if seat_count == seats_per_side:
             result[row].append(None)
-        if seat_count >= seats_per_row:
+
+        # else if we have filled out our row, go to the next row
+        elif seat_count >= seats_per_row:
             row += 1
             seat_count = 0
     return result
