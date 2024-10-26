@@ -18,3 +18,6 @@ python manage.py runserver
 - After adding a trip, view the trip
 - Go into the admin, and assign your user to one of the SeatUserLink slots
 - Refresh trip page to see that it shows your seat is taken
+
+## Screenshots
+![Seat Example](images/SeatExample.png?raw=true)
