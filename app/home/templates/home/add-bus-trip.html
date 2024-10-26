@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_name %}Add Bus Trip{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <form action="." method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <p>Note: Use the format of 'YYYY-MM-DD HH:MM' (24 hour time)</p>
+            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -40,4 +40,18 @@ def bus_detail(request, pk):
     bus_data = get_object_or_404(models.Bus, pk=pk)
     seat_list = models.Seat.objects.filter(bus=bus_data).order_by("row", "column")
     seat_data = utils.organize_seats_for_bus(bus_data, seat_list)
-    return render(request, "home/bus-detail.html", {"bus_data": bus_data, "seat_data": seat_data})
+    bus_trips = models.BusTrip.objects.filter(bus=bus_data).order_by("departure_time")
+    return render(request, "home/bus-detail.html", {"bus_data": bus_data, "seat_data": seat_data, "bus_trips": bus_trips})
+
+def add_bus_trip(request, bus_pk):
+    bus_data = get_object_or_404(models.Bus, pk=bus_pk)
+    if request.method == "POST":
+        form = forms.BusTripForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.bus = bus_data
+            item.save()
+            return redirect("bus-detail", pk=bus_pk)
+    else:
+        form = forms.BusTripForm()
+    return render(request, "home/add-bus-trip.html", {"form": form})
