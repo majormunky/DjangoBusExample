@@ -8,6 +8,12 @@
 <div class="row">
     <div class="col-12">
         <table class='normal-table'>
+            <tr>
+                <td class="'aisle">D</td>
+                {% for _ in row_count %}
+                    <td></td>
+                {% endfor %}
+            </tr>
             {% for row in seat_data %}
             <tr>
                 {% for seat_link in row %}

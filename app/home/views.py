@@ -81,4 +81,15 @@ def bus_trip_detail(request, pk):
     trip_data = get_object_or_404(models.BusTrip, pk=pk)
     seat_links = models.SeatUserLink.objects.filter(departure_time=trip_data)
     seat_data = utils.organize_seats_for_bus(trip_data.bus, seat_links)
-    return render(request, "home/bus-trip-detail.html", {"trip_data": trip_data, "seat_links": seat_links, "seat_data": seat_data})
+    # how many empty seat slots next to the bus driver
+    row_count = len(seat_data[0]) - 1
+    return render(
+        request,
+        "home/bus-trip-detail.html",
+        {
+            "trip_data": trip_data,
+            "seat_links": seat_links,
+            "seat_data": seat_data,
+            "row_count": range(row_count)
+        }
+    )
