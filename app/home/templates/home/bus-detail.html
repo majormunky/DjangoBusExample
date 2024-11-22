@@ -9,6 +9,12 @@
     <div class="col-6">
         <h3>Seat Configuration</h3>
         <table class='normal-table'>
+            <tr>
+                <td class="'aisle">D</td>
+                {% for _ in row_count %}
+                    <td></td>
+                {% endfor %}
+            </tr>
         {% for row in seat_data %}
         <tr>
             {% for seat in row %}
