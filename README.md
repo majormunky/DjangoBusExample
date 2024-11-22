@@ -21,3 +21,5 @@ python manage.py runserver
 
 ## Screenshots
 ![Seat Example](images/SeatExample.png?raw=true)
+
+![2x3 Seat Example](images/2x3SeatExample.png?raw=true)
