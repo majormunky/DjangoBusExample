@@ -14,6 +14,7 @@ class Bus(models.Model):
         ("1x1", "1x1"),
         ("2x2", "2x2"),
         ("2x3", "2x3"),
+        ("Custom", "Custom"),
     )
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
@@ -33,6 +34,7 @@ class Seat(models.Model):
     bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
     column = models.IntegerField()
     row = models.IntegerField()
+    is_aisle = models.BooleanField(default=False)
     person = models.ManyToManyField(get_user_model(), through="SeatUserLink")
 
     def __str__(self):
