@@ -36,7 +36,7 @@ class Seat(models.Model):
     person = models.ManyToManyField(get_user_model(), through="SeatUserLink")
 
     def __str__(self):
-        return f"{self.row}-{self.column}"
+        return f"R{self.row}-C{self.column}"
 
 
 class SeatUserLink(models.Model):
